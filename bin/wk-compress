@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+const program = require("commander");
+const chalk = require("chalk");
+const path = require("path");
+const fs = require("fs").promises;
+const log = console.log;
+const UglifyJS = require("uglify-js");
+const ora = require("ora");
+program.option("-o, --output <file>", "Output file path (default STDOUT)")
+  .parse(process.argv);
+log(program.args);
+const file = program.args[0];
+const absPath = path.isAbsolute(file) ? file : path.join(process.cwd(), file);
+console.log(absPath);
+
+async function Compress () {
+  const spinner = ora({
+    text: "starting compressing...",
+    spinner: "weather",
+    color: "blue"
+    //    prefixText:'🦄'
+  }).start();
+  const originCode = await fs.readFile(absPath, {
+    encoding: "utf8"
+  });
+  const { error, code } = UglifyJS.minify(originCode);
+  //  console.log(result);
+  if (error) {
+    spinner.fail(error.message);
+    process.exit(-1);
+  } else {
+    if(program.output){
+      const absPath = path.join(process.cwd(),program.output);
+      await fs.writeFile(absPath,code);
+    }else{
+      console.log(code);
+    }
+    spinner.succeed("compress success!");
+  }
+}
+
+Compress();
+
+
+

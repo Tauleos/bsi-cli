@@ -1,0 +1,36 @@
+{
+  "name": "wk-cli",
+  "version": "1.0.0",
+  "description": "日常工作中的生产力合集",
+  "bin": {
+    "wk": "bin/wk"
+  },
+  "main": "bin/wk",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^4.1.0",
+    "ora": "^4.0.3",
+    "uglify-js": "^3.7.4"
+  },
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "inquirer": "^7.0.3",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
