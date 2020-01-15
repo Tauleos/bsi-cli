@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+const program = require('commander');
+const chalk = require('chalk');
+const path = require('path');
+const fs = require('fs').promises;
+const log = console.log;
+const ora = require('ora');
+const inquirer = require('inquirer');
+const {Spinner} = require('../lib/spinner');
+
+program.option('-o2, --output3 <file>', 'Output33 file path (default STDOUT)')
+  .parse(process.argv);
+
+const appName = program.args[0];
+
+
+async function getAnswer () {
+  return await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'framework',
+      message: 'What framework do you want?',
+      choices: [
+        'Vue',
+        'Vue-Component',
+        'React',
+        'React-Component',
+        'Koa',
+        'Express',
+      ],
+      prefix: '🐢',
+    },
+  ]);
+}
+
+async function getFilesInDir (dir) {
+  const files = [];
+  const _getFiles = async function(_dir) {
+    const _files = await fs.readdir(_dir, {withFileTypes: true});
+    for (const entry of _files) {
+      const _path = path.resolve(_dir, entry.name);
+      if (entry.isDirectory()) {
+        await _getFiles(_path);
+      } else {
+        files.push(_path);
+      }
+    }
+  };
+  await _getFiles(dir);
+  return files;
+  
+}
+
+async function create () {
+  const info = await getAnswer();
+  const spinner = Spinner();
+  spinner.start();
+  const files = await getFilesInDir(
+    path.resolve(__dirname, '../template/Vue-Component'));
+  console.log(files,appName);
+  //  ejs.render()
+  for(let file of files){
+  
+  }
+  
+}
+
+create().then(() => process.exit(-1));
