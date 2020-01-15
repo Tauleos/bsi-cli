@@ -1,0 +1,90 @@
+/**
+ * 36rem由来：设计稿屏宽(360) / 开发约定满屏屏宽(10rem)。其他设计尺寸用设计px/36rem即为实际尺寸。
+ */
+@plugin "less-plugin";
+
+@contentWidth: wem(360);
+
+@base_rem: 360/10rem;
+
+@padding: wem(10);
+
+@gap-lr: wem(10);   // 左右空隙
+
+@gap-tb: wem(10);   // 上下空隙
+@title-top-gap: wem(22);   // 带标题的上间隙
+
+@font_family: FZLTHJW--GB1-0, sans-serif;
+
+@rag-container-bg-z: 1; // 层级
+@store-header-z: 2;
+@component-z: 1;    // 组件层级
+@top-bg-z: 1;   // 顶部导航下面背景
+@navigator-z: 2;    // 顶部导航
+
+@shop-center-page: .shop-center-component; // 商品中心装修页面修饰类
+
+@standard-nav-height: wem(45);
+
+
+.size_px(@px; @base: @base_rem) {
+  @value: @px/@base;
+}
+
+.zero_fill() {
+  margin: 0;
+  padding: 0;
+}
+
+.wid_hei(@width; @height: @width) {
+  width: @width;
+  height: @height;
+}
+
+.none_scrollbar() {
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+  }
+}
+
+.section-title() {
+  padding-left: 5*@rem;
+  margin: wem(18) 0 wem(11) 0;
+  font-size: 16*@rem;
+  font-weight: bold;
+  line-height: 15*@rem;
+  height: 15*@rem;
+  color: #333;
+  letter-spacing: 0.43*@rem;
+}
+
+.show-one-line() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 左侧固定右侧自适应布局
+.left-fix-right-fill(@left-width) {
+  .left {
+    float: left;
+    width: @left-width;
+  }
+
+  .right {
+    margin-left: @left-width;
+  }
+}
+
+.store_header_container() {
+  height: wem(253);
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
