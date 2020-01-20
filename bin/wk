@@ -5,6 +5,7 @@ program.version(`wk-cli ${ require("../package").version }`)
 
 program.command("new <app-name>","create a new project by wk-cli");
 program.command("compress <file>", "compress html css js");
+program.command("date <time>", "format timestamps to Date or date to timestamps");
 //自定义帮助信息
 program.on("--help", function() {
   console.log("  Examples:");
