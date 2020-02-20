@@ -9,9 +9,10 @@ const time = program.args[0];
 
 function format (number) {
   number.length === 10 && ( number = number * 1000 );
+  number = +number;
   const date = new Date(number);
-  return `${ date.getFullYear() }-${ date.getMonth() +
-  1 }-${ date.getDate() } ${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }`;
+  return `${ date.getFullYear() }-${ String(date.getMonth() +
+  1).padStart(2,'0') }-${ String(date.getDate()).padStart(2,0) } ${ String(date.getHours()).padStart(2,0) }:${ String(date.getMinutes()) }:${ String(date.getSeconds()) }`;
 }
 
 if (time) {
