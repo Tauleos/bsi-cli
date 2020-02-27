@@ -2,9 +2,12 @@
 const program = require('commander');
 const chalk = require('chalk');
 const path = require('path');
-const fs = require('fs').promises;
+const ejs = require('ejs');
+const fs = require('fs');
+const fsp = fs.promises;
+const fse = require('fs-extra');
+const download = require('../lib/download');
 const log = console.log;
-const ora = require('ora');
 const inquirer = require('inquirer');
 const {Spinner} = require('../lib/spinner');
 
@@ -12,7 +15,6 @@ program.option('-o2, --output3 <file>', 'Output33 file path (default STDOUT)')
   .parse(process.argv);
 
 const appName = program.args[0];
-
 
 async function getAnswer () {
   return await inquirer.prompt([
@@ -34,9 +36,10 @@ async function getAnswer () {
 }
 
 async function getFilesInDir (dir) {
+  dir = path.resolve(__dirname, dir);
   const files = [];
   const _getFiles = async function(_dir) {
-    const _files = await fs.readdir(_dir, {withFileTypes: true});
+    const _files = await fsp.readdir(_dir, {withFileTypes: true});
     for (const entry of _files) {
       const _path = path.resolve(_dir, entry.name);
       if (entry.isDirectory()) {
@@ -52,17 +55,43 @@ async function getFilesInDir (dir) {
 }
 
 async function create () {
-  const info = await getAnswer();
-  const spinner = Spinner();
+  //  const info = await getAnswer();
+  const target = process.cwd();
+  const templatePath = path.resolve(__dirname, `../template/Vue-Component`);
+  const spinner = Spinner('复制模板文件中');
   spinner.start();
-  const files = await getFilesInDir(
-    path.resolve(__dirname, '../template/Vue-Component'));
-  console.log(files,appName);
-  //  ejs.render()
-  for(let file of files){
-  
+  try {
+    const files = await getFilesInDir(templatePath);
+    const targetDir = path.resolve(target, appName);
+    const isExist = await fsp.stat(targetDir).catch(() => false);
+    if (isExist) {
+      await fse.remove(targetDir);
+    }
+    await fsp.mkdir(targetDir);
+    for (let file of files) {
+      const relativePath = path.relative(templatePath, file);
+      const newPath = path.resolve(targetDir, relativePath);
+      const fileStr = await render(file, {});
+      await fse.ensureDir(path.dirname(newPath));
+      await fsp.writeFile(newPath, fileStr, {encoding: 'utf-8'});
+    }
+    spinner.succeed();
+    spinner.stopAndPersist('downloading template...');
+    await download();
+    spinner.succeed();
+  }catch (e) {
+    console.error(e);
   }
   
+}
+
+function render (file, data = {}) {
+  return new Promise(( (resolve, reject) => {
+    ejs.renderFile(file, data, function(err, str) {
+      if (err) reject(err);
+      resolve(str);
+    });
+  } ));
 }
 
 create().then(() => process.exit(-1));
