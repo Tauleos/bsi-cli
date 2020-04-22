@@ -1,0 +1,63 @@
+{
+  "name": "shop-home",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "rimraf dist && vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@sentry/browser": "^5.15.4",
+    "@sentry/integrations": "^5.15.4",
+    "axios": "^0.19.2",
+    "element-ui": "^2.13.1",
+    "vue": "^2.6.11",
+    "vue-property-decorator": "^8.4.1",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.2.0",
+    "xlsx": "^0.15.6",
+    "youpin-upload": "git+ssh://git@git.n.xiaomi.com:YouPin_CM/youpin-upload.git"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "~7.9.0",
+    "@vue/cli-plugin-babel": "^4.3.1",
+    "@vue/cli-plugin-eslint": "^4.3.1",
+    "@vue/cli-service": "^4.3.1",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.2.5",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^8.2.1",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^1.11.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*": "pretty-quick --staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./pre-commit && lint-staged"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

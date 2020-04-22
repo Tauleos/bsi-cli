@@ -1,0 +1,24 @@
+.icon-image {
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  &,
+  &.normal {
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+  }
+}
+
+.create-icon-image (@name) {
+  .icon-image-@{name} {
+    background-image: url("./icons/@{name}.png");
+    &.active {
+      background-image: url("./icons/@{name}-active.png");
+    }
+  }
+}
+
+.create-icon-image(priority);
+
+.create-icon-image(home);
