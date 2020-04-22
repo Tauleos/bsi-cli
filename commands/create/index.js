@@ -9,6 +9,7 @@ const download = require('../../lib/download');
 const Metalsmith = require('metalsmith');
 const logger = require('../../lib/logger');
 const { logWithSpinner, stopSpinner } = require('../../lib/spinner');
+const runShell = require('../../lib/run');
 
 program.option('-c, --clone', 'use git clone');
 
@@ -53,9 +54,11 @@ async function getAnswer() {
 async function run(_templateName) {
   if (!_templateName) {
     const info = await getAnswer();
-    templateName = '123';
+    templateName = path.join(__dirname, `../../template/${info.framework}`);
   }
-  templateName = program.args[1] || _templateName;
+  // templateName = program.args[1] || _templateName;
+  console.log('templateName', templateName);
+
   const isExist = await fsUtils.isExist(targetPath);
   if (isExist) {
     inquirer
@@ -86,16 +89,25 @@ async function start() {
   } else {
     await remoteCopy();
   }
-  // log instructions
+  try {
+    await fsUtils.copy(templateCacheDirectory, targetPath);
+  } catch (err) {
+    logger.error(err);
+  }
   stopSpinner();
+  logger.log(`📦  Installing additional dependencies...`);
+  await runShell('npm', ['install', '--loglevel', 'error'], targetPath);
+
+  // log instructions
+
   logger.log();
   logger.log(`🎉  Successfully created project ${chalk.yellow(targetPath)}.`);
   logger.log(
     `👉  Get started with the following commands:\n\n` +
       (targetPath === process.cwd() ? `` : chalk.cyan(` ${chalk.gray('$')} cd ${name}\n`)) +
-      chalk.cyan(` ${chalk.gray('$')} ${'yarn serve'}`) +
-      chalk.cyan(` ${chalk.gray('$')} or`) +
-      chalk.cyan(` ${chalk.gray('$')} npm run serve`)
+      chalk.cyan(` ${chalk.gray('$')} yarn serve\n`) +
+      chalk.cyan(` ${chalk.gray('$')} or\n`) +
+      chalk.cyan(` ${chalk.gray('$')} npm run serve\n`)
   );
 
   logger.log();
@@ -106,7 +118,6 @@ async function localCopy() {
   if (!path.isAbsolute(template)) {
     template = path.normalize(path.join(process.cwd(), template));
   }
-  console.log(template);
 
   return new Promise((resolve, reject) => {
     Metalsmith(template)
@@ -114,7 +125,6 @@ async function localCopy() {
       .source('.')
       .destination(templateCacheDirectory)
       .build((err, files) => {
-        console.log('files', files);
         if (err) {
           console.log();
           logger.error('Local template synchronization failed, reason: "%s".', err.message.trim());
@@ -125,11 +135,6 @@ async function localCopy() {
 }
 async function remoteCopy() {
   await download(templateName, templateCacheDirectory, clone);
-  try {
-    await fsUtils.copy(templateCacheDirectory, targetPath);
-  } catch (err) {
-    logger.error(err);
-  }
 }
 
 module.exports = run;
