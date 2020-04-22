@@ -33,7 +33,7 @@ process.on('exit', function () {
   console.log();
 });
 const appName = program.args[0];
-const templateName = program.args[1] || 'gitlab:git.n.xiaomi.com:YouPin_CM_Pub/ypcm-admin-template';
+let templateName = program.args[1];
 const isHere = !appName || appName === '.';
 const name = isHere ? path.relative('../', process.cwd()) : appName;
 const targetPath = path.join(process.cwd(), appName || '.');
@@ -50,7 +50,12 @@ async function getAnswer() {
     },
   ]);
 }
-async function run() {
+async function run(_templateName) {
+  if (!_templateName) {
+    const info = await getAnswer();
+    templateName = '123';
+  }
+  templateName = program.args[1] || _templateName;
   const isExist = await fsUtils.isExist(targetPath);
   if (isExist) {
     inquirer
@@ -88,7 +93,9 @@ async function start() {
   logger.log(
     `👉  Get started with the following commands:\n\n` +
       (targetPath === process.cwd() ? `` : chalk.cyan(` ${chalk.gray('$')} cd ${name}\n`)) +
-      chalk.cyan(` ${chalk.gray('$')} ${'yarn serve\nor\nnpm run serve'}`)
+      chalk.cyan(` ${chalk.gray('$')} ${'yarn serve'}`) +
+      chalk.cyan(` ${chalk.gray('$')} or`) +
+      chalk.cyan(` ${chalk.gray('$')} npm run serve`)
   );
 
   logger.log();
@@ -125,4 +132,4 @@ async function remoteCopy() {
   }
 }
 
-run();
+module.exports = run;
