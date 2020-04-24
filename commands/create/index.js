@@ -19,13 +19,13 @@ program.on('--help', function () {
   console.log('  Examples:');
   console.log();
   console.log(chalk.gray('    # create a new project with an official template'));
-  console.log('    $ cm create my-project template');
+  console.log('    $ bsi create my-project template');
   console.log();
   console.log(chalk.gray('    # create a new project straight from a github template'));
-  console.log('    $ cm create my-project username/repo');
+  console.log('    $ bsi create my-project username/repo');
   console.log();
   console.log(chalk.gray('    # create a new project straight from a local template'));
-  console.log('    $ cm create my-project ~/fs/path/to-custom-template');
+  console.log('    $ bsi create my-project ~/fs/path/to-custom-template');
   console.log();
 });
 program.parse(process.argv);
@@ -40,7 +40,7 @@ const isHere = !appName || appName === '.';
 const name = isHere ? path.relative('../', process.cwd()) : appName;
 const targetPath = path.join(process.cwd(), appName || '.');
 const clone = program.clone || true;
-const templateCacheDirectory = path.join(os.homedir(), '.think-templates');
+const templateCacheDirectory = path.join(os.homedir(), '.bsi-templates');
 
 async function getAnswer() {
   return await inquirer.prompt([

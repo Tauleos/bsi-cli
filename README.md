@@ -1,4 +1,6 @@
-# @wk/cli
+# bsi-cli
+
+bsi (Black Shiba Inu)
 
 ## Table of Contents
 
@@ -10,7 +12,7 @@
 ## Install
 
 ```
-npm install -g @wk/cli
+npm install -g bsi-cli
 ```
 
 ## Usage
@@ -26,7 +28,7 @@ create framework template for frontend,including
 - koa
 
 ```
-vita create <template-name>
+bsi create <template-name>
 ```
 
 ### Date
@@ -34,7 +36,7 @@ vita create <template-name>
 transfrom timestamps to formated(yyyy-MM-dd HH:mm:ss) value, vice versa
 
 ```
-vita date <value>
+bsi date <value>
 ```
 
 ### Compress
