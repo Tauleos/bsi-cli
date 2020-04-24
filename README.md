@@ -1,6 +1,6 @@
 # bsi-cli
 
-bsi (Black Shiba Inu)
+bsi (Black Shiba Inu) ![](./assets/bsi.jpeg)
 
 ## Table of Contents
 
