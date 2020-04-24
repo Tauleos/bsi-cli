@@ -2,7 +2,7 @@
 
 bsi (Black Shiba Inu)
 
-![](./assets/bsi.jpeg)
+![](./assets/bsi.jpeg =50x50)
 
 ## Table of Contents
 
