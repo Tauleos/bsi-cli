@@ -1,5 +1,5 @@
 {
-  "name": "wk-cli",
+  "name": "@wk/cli",
   "version": "1.0.0",
   "description": "日常工作中的生产力合集",
   "bin": {
@@ -9,18 +9,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "cli"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.0.0",
     "commander": "^5.0.0",
     "download-git-repo": "^3.0.2",
+    "ejs": "^3.0.1",
     "fs-extra": "^9.0.0",
+    "globby": "^11.0.0",
     "inquirer": "^7.1.0",
     "metalsmith": "^2.3.0",
     "ora": "^4.0.4",
-    "ejs": "^3.0.1",
     "uglify-js": "^3.7.4"
   },
   "devDependencies": {

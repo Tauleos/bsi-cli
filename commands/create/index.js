@@ -10,6 +10,7 @@ const Metalsmith = require('metalsmith');
 const logger = require('../../lib/logger');
 const { logWithSpinner, stopSpinner } = require('../../lib/spinner');
 const runShell = require('../../lib/run');
+const globby = require('globby');
 
 program.option('-c, --clone', 'use git clone');
 
@@ -39,6 +40,7 @@ const isHere = !appName || appName === '.';
 const name = isHere ? path.relative('../', process.cwd()) : appName;
 const targetPath = path.join(process.cwd(), appName || '.');
 const clone = program.clone || true;
+const templateCacheDirectory = path.join(os.homedir(), '.think-templates');
 
 async function getAnswer() {
   return await inquirer.prompt([
@@ -55,9 +57,9 @@ async function run(_templateName) {
   if (!_templateName) {
     const info = await getAnswer();
     templateName = path.join(__dirname, `../../template/${info.framework}`);
+  } else {
+    templateName = program.args[1] || _templateName;
   }
-  // templateName = program.args[1] || _templateName;
-  console.log('templateName', templateName);
 
   const isExist = await fsUtils.isExist(targetPath);
   if (isExist) {
@@ -66,8 +68,8 @@ async function run(_templateName) {
         {
           type: 'confirm',
           message: isHere
-            ? 'Generate project in current directory?'
-            : 'Target directory exists. Continue?',
+            ? '  Generate project in current directory?'
+            : '  Target directory exists. Continue?',
           name: 'ok',
         },
       ])
@@ -80,7 +82,7 @@ async function run(_templateName) {
     start();
   }
 }
-const templateCacheDirectory = path.join(os.homedir(), '.think-templates');
+
 async function start() {
   logWithSpinner(`✨`, `Creating project in ${chalk.yellow(name)}.`);
   const isExist = await fsUtils.isExist(templateName);
@@ -90,7 +92,33 @@ async function start() {
     await remoteCopy();
   }
   try {
-    await fsUtils.copy(templateCacheDirectory, targetPath);
+    await fsUtils.remove(targetPath);
+    const smith = () => {
+      return new Promise((resolve, reject) => {
+        Metalsmith(templateCacheDirectory)
+          .clean(false)
+          .ignore(function (file, stats) {
+            if (file.includes('/nginx/')) {
+              return true;
+            }
+            return false;
+          })
+          .source('.')
+          .destination(targetPath)
+          .build((err, files) => {
+            if (err) {
+              console.log();
+              logger.error(
+                'Local template synchronization failed, reason: "%s".',
+                err.message.trim()
+              );
+            }
+            resolve();
+          });
+      });
+    };
+    await smith();
+    // await fsUtils.copy(templateCacheDirectory, targetPath);
   } catch (err) {
     logger.error(err);
   }
@@ -99,12 +127,14 @@ async function start() {
   await runShell('npm', ['install', '--loglevel', 'error'], targetPath);
 
   // log instructions
+  const isPackageJsonExist = await globby('{package.json,**/package.json}', { cwd: targetPath });
 
+  let targetName = `${name}/${isPackageJsonExist}`.replace('/package.json', '');
   logger.log();
   logger.log(`🎉  Successfully created project ${chalk.yellow(targetPath)}.`);
   logger.log(
     `👉  Get started with the following commands:\n\n` +
-      (targetPath === process.cwd() ? `` : chalk.cyan(` ${chalk.gray('$')} cd ${name}\n`)) +
+      (targetPath === process.cwd() ? `` : chalk.cyan(` ${chalk.gray('$')} cd ${targetName}\n`)) +
       chalk.cyan(` ${chalk.gray('$')} yarn serve\n`) +
       chalk.cyan(` ${chalk.gray('$')} or\n`) +
       chalk.cyan(` ${chalk.gray('$')} npm run serve\n`)
