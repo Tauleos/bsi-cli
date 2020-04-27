@@ -130,7 +130,7 @@ async function start() {
   const isPackageJsonExist = await globby('{package.json,**/package.json}', { cwd: targetPath });
 
   let targetName = `${name}/${isPackageJsonExist}`.replace('/package.json', '');
-  logger.log();
+  console.log();
   logger.log(`🎉  Successfully created project ${chalk.yellow(targetPath)}.`);
   logger.log(
     `👉  Get started with the following commands:\n\n` +
@@ -140,7 +140,7 @@ async function start() {
       chalk.cyan(` ${chalk.gray('$')} npm run serve\n`)
   );
 
-  logger.log();
+  console.log();
 }
 
 async function localCopy() {
