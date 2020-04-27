@@ -123,13 +123,14 @@ async function start() {
     logger.error(err);
   }
   stopSpinner();
-  logger.log(`📦  Installing additional dependencies...`);
-  await runShell('npm', ['install', '--loglevel', 'error'], targetPath);
-
-  // log instructions
   const isPackageJsonExist = await globby('{package.json,**/package.json}', { cwd: targetPath });
 
   let targetName = `${name}/${isPackageJsonExist}`.replace('/package.json', '');
+  logger.log(`📦  Installing additional dependencies...`);
+  await runShell('npm', ['install', '--loglevel', 'error'], targetName);
+
+  // log instructions
+
   console.log();
   logger.log(`🎉  Successfully created project ${chalk.yellow(targetPath)}.`);
   logger.log(
