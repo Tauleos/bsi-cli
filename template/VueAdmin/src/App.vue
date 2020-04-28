@@ -45,16 +45,6 @@ export default {
         })
     },
     mounted() {
-        console.groupCollapsed(
-            '%c平台有问题 %c 请勿 %c 找以下人员',
-            'color:#0099FF;font-size:14px',
-            'color:#0099FF;font-size:20px',
-            'color:#0099FF;font-size:14px'
-        );
-        console.log('%c磊哥 👉 wenlei@xiaomi.com', 'color: #CC0000; font-size:30px');
-        console.log('%c阿星 👉 jiangzengxing@xiaomi.com', 'color: #00FFFF; font-size:8px');
-        console.log();
-        console.groupEnd();
         this.getDiscountTypeList();
         this.getMaterialTypeList();
         this.getActInfo();
