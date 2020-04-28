@@ -115,7 +115,7 @@ class Creator {
     });
   }
   async _remoteCopy() {
-    await download(this.templateName, this.templateCacheDirectory, this.clone);
+    await download(this.templateName, this.templateCacheDirectory, true);
   }
   resolvePrompts() {
     return inquirer.prompt(this.injectedPrompts);

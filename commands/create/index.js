@@ -13,7 +13,7 @@ const runShell = require('../../lib/run');
 const globby = require('globby');
 const Creator = require('./Creator');
 const cliName = process.env.CLI_NAME || 'bsi';
-program.option('-c, --clone', 'use git clone');
+// program.option('-c, --clone', 'use git clone');
 
 program.on('--help', function () {
   console.log();
@@ -40,8 +40,8 @@ let templateName = program.args[1];
 const isHere = !appName || appName === '.';
 const name = isHere ? path.relative('../', process.cwd()) : appName;
 const targetPath = path.join(process.cwd(), appName || '.');
-const clone = program.clone || true;
-const templateCacheDirectory = path.join(os.homedir(), '.bsi-templates');
+// const clone = program.clone || true;
+// const templateCacheDirectory = path.join(os.homedir(), '.bsi-templates');
 
 async function getAnswer() {
   return inquirer.prompt([
