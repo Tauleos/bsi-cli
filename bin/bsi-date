@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const evaluateDate = require('../commands/date');
-// program.option('-o, --output <file>', 'Output file path (default STDOUT)').parse(process.argv);
+program.parse(process.argv);
 const time = program.args[0];
 
 evaluateDate(time);
