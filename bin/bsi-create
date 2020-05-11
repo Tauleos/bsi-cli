@@ -1,11 +1,21 @@
 #!/usr/bin/env node
-const chalk = require('chalk');
+// const chalk = require('chalk');
 const { run, registerPlugins } = require('../commands/create');
 run();
 
-/**
- * const {run,registerPlugins } = require('../commands/create');
- * registerPlugins(function(creator){
- *
- * })
- */
+/* registerPlugins(async function registerGit(api, { logger, runCommand }) {
+  api.injectPrompt({
+    name: 'TypeScript',
+    value: 'ts',
+    short: 'TS',
+    description: 'Add support for the TypeScript language',
+    link: 'https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript',
+    plugins: ['typescript'],
+  });
+  api.onGitInit(async function runGitCommands() {
+    logger.log('🛠  Initializing git branch...');
+    await runCommand('git checkout -b staging');
+    await runCommand('git checkout -b preview');
+  });
+});
+run(); */

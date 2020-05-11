@@ -1,19 +1,11 @@
 const program = require('commander');
 const chalk = require('chalk');
 const path = require('path');
-// const ejs = require('ejs');
 const fsUtils = require('../../lib/fileRunner');
 const inquirer = require('inquirer');
-const os = require('os');
-const download = require('../../lib/download');
-const Metalsmith = require('metalsmith');
-const logger = require('../../lib/logger');
-const { logWithSpinner, stopSpinner } = require('../../lib/spinner');
-const runShell = require('../../lib/run');
-const globby = require('globby');
 const Creator = require('./Creator');
+const { PluginsContainer } = require('./Plugins');
 const cliName = process.env.CLI_NAME || 'bsi';
-// program.option('-c, --clone', 'use git clone');
 
 program.on('--help', function () {
   console.log();
@@ -54,7 +46,14 @@ async function getAnswer() {
     },
   ]);
 }
+let pluginsContainer = new PluginsContainer();
 async function run(_templateName) {
+  if (!appName) {
+    program.outputHelp();
+    console.log(`  ` + chalk.red(`Missing required argument ${chalk.yellow(`<app-name>`)}.`));
+    console.log();
+    process.exit(1);
+  }
   const isExist = await fsUtils.isExist(targetPath);
   if (isExist) {
     const { ok } = await inquirer.prompt([
@@ -79,11 +78,11 @@ async function run(_templateName) {
   }
 
   // start();
-  const creator = new Creator(name, templateName, targetPath);
+  const creator = new Creator(name, templateName, targetPath, pluginsContainer.plugins);
   await creator.create();
 }
 
 module.exports = {
   run,
-  registerPlugins: Creator.registerPlugins,
+  registerPlugins: pluginsContainer.registerPlugins.bind(pluginsContainer),
 };
