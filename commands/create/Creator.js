@@ -75,21 +75,17 @@ class Creator {
     }
 
     await this.resolveLifeCycles('onProjectCreate');
-    const isPackageJsonExist = await globby('{package.json,**/package.json}', {
-      cwd: this.targetPath,
-    });
 
-    const cwd = `${this.name}/${isPackageJsonExist}`.replace('/package.json', '');
     //初始化git
-    logWithSpinner(`🗃`, `Initializing git repository...\n`);
-    await runCmd('git init', cwd);
+    logWithSpinner(`🗃`, `Initializing git repository...`);
+    await runCmd('git init', this.targetPath);
 
     // commit initial state
     let gitCommitFailed = false;
-    await runCmd('git add -A', cwd);
+    await runCmd('git add -A', this.targetPath);
 
     try {
-      await runCmd('git', ['commit', '-m', 'init'], cwd);
+      await runCmd('git', ['commit', '-m', 'init'], this.targetPath);
     } catch (e) {
       gitCommitFailed = true;
     }
@@ -98,8 +94,14 @@ class Creator {
     stopSpinner();
 
     logger.log(`📦  Installing additional dependencies...`);
-    await runCmd('npm', ['install', '--loglevel', 'error'], cwd);
+    await runCmd('npm', ['install', '--loglevel', 'error'], this.targetPath);
 
+    const isPackageJsonExist = await globby('{package.json,{!node_modules}/package.json}', {
+      cwd: this.targetPath,
+      gitignore: true,
+    });
+
+    const cwd = `${this.name}/${isPackageJsonExist}`.replace('/package.json', '');
     // log instructions
     console.log();
     logger.log(`🎉  Successfully created project ${chalk.yellow(this.targetPath)}.`);
