@@ -93,15 +93,15 @@ class Creator {
     await this.resolveLifeCycles('onGitInit');
     stopSpinner();
 
-    logger.log(`📦  Installing additional dependencies...`);
-    await runCmd('npm', ['install', '--loglevel', 'error'], this.targetPath);
-
     const isPackageJsonExist = await globby('{package.json,**/package.json}', {
       cwd: this.targetPath,
       gitignore: true,
     });
 
     const cwd = `${this.name}/${isPackageJsonExist}`.replace('/package.json', '');
+    logger.log(`📦  Installing additional dependencies...`);
+    await runCmd('npm', ['install', '--loglevel', 'error'], cwd);
+
     // log instructions
     console.log();
     logger.log(`🎉  Successfully created project ${chalk.yellow(this.targetPath)}.`);
