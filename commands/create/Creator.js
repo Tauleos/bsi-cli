@@ -96,7 +96,7 @@ class Creator {
     logger.log(`📦  Installing additional dependencies...`);
     await runCmd('npm', ['install', '--loglevel', 'error'], this.targetPath);
 
-    const isPackageJsonExist = await globby('{package.json,{!node_modules}/package.json}', {
+    const isPackageJsonExist = await globby('{package.json,**/package.json}', {
       cwd: this.targetPath,
       gitignore: true,
     });
