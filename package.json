@@ -8,7 +8,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "standard-version"
+    "release": "standard-version",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "cli"
@@ -26,7 +28,8 @@
     "metalsmith": "^2.3.0",
     "ora": "^4.0.4",
     "standard-version": "^8.0.0",
-    "uglify-js": "^3.7.4"
+    "uglify-js": "^3.7.4",
+    "snyk": "^1.319.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -51,5 +54,6 @@
   },
   "engines": {
     "node": ">=8.17"
-  }
+  },
+  "snyk": true
 }
