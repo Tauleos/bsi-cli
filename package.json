@@ -15,7 +15,14 @@
   "keywords": [
     "cli"
   ],
-  "author": "",
+  "author": "Tauleos",
+  "bugs": {
+    "url": "https://github.com/Tauleos/bsi-cli/issuess"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tauleos/bsi-cli.git"
+  },
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.0.0",
@@ -27,9 +34,10 @@
     "inquirer": "^7.1.0",
     "metalsmith": "^2.3.0",
     "ora": "^4.0.4",
-    "standard-version": "^8.0.0",
-    "uglify-js": "^3.7.4",
-    "snyk": "^1.319.2"
+    "portfinder": "^1.0.26",
+    "serve-handler": "^6.1.2",
+    "snyk": "^1.319.2",
+    "uglify-js": "^3.7.4"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -39,7 +47,8 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
     "prettier": "^2.0.4",
-    "pretty-quick": "^2.0.1"
+    "pretty-quick": "^2.0.1",
+    "standard-version": "^8.0.0"
   },
   "husky": {
     "hooks": {

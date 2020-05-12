@@ -7,6 +7,7 @@ program.version(`${cliName}-cli ${require('../package').version}`).usage('<comma
 program.command('create <app-name>', `create a new project by ${cliName}-cli`);
 program.command('compress <file>', 'compress html css js');
 program.command('date <time>', 'format timestamps to Date or date to timestamps');
+program.command('serve', `use ${chalk.cyan('Serve')} to run static file server`);
 
 program.arguments('<command>').action((cmd) => {
   program.outputHelp();
@@ -21,4 +22,11 @@ program.on('--help', function () {
   );
   console.log();
 });
+
+program.Command.prototype.missingArgument = function (...args) {
+  this.outputHelp();
+  console.log(`  ${chalk.red(`Missing required argument ${chalk.yellow(`<${args[0]}>`)}.`)}`);
+  console.log();
+  process.exit(1);
+};
 program.parse(process.argv);
