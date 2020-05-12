@@ -18,3 +18,5 @@ patch:
         patched: '2020-05-11T08:10:11.087Z'
     - standard-version > conventional-changelog > conventional-changelog-core > conventional-commits-parser > lodash:
         patched: '2020-05-11T08:10:11.087Z'
+    - portfinder > async > lodash:
+        patched: '2020-05-12T07:07:25.134Z'
