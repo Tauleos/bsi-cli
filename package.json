@@ -36,7 +36,7 @@
     "ora": "^4.0.4",
     "portfinder": "^1.0.26",
     "serve-handler": "^6.1.2",
-    "snyk": "^1.319.2",
+    "snyk": "^1.320.2",
     "uglify-js": "^3.7.4"
   },
   "devDependencies": {
