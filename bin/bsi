@@ -1,13 +1,37 @@
 #!/usr/bin/env node
 const program = require('commander');
 const chalk = require('chalk');
+const path = require('path');
 const cliName = process.env.CLI_NAME || 'bsi';
 program.version(`${cliName}-cli ${require('../package').version}`).usage('<command> [options]');
 
 program.command('create <app-name>', `create a new project by ${cliName}-cli`);
-program.command('compress <file>', 'compress html css js');
-program.command('date <time>', 'format timestamps to Date or date to timestamps');
-program.command('serve', `use ${chalk.cyan('Serve')} to run static file server`);
+
+program
+  .command('compress <file>')
+  .description('compress html css js')
+  .option('-o, --output <file>', 'Output file path (default STDOUT)')
+  .action((fileName, cmd) => {
+    const opts = cleanArgs(cmd);
+    require('../lib/compress')(fileName, opts);
+  });
+
+program
+  .command('date <time>')
+  .description('format timestamps to Date or date to timestamps')
+  .action((time) => {
+    require('../lib/date')(time);
+  });
+program
+  .command('serve [dir-name]')
+  .description(`use ${chalk.cyan('Serve')} to run static file server`)
+  .option('-p, --port <port>', 'which port to use', 9000)
+  .action((name, cmd) => {
+    const opts = cleanArgs(cmd);
+    const dir = path.join(process.cwd(), name || '.');
+    require('../lib/serve')(dir, opts);
+  });
+program.command('tree <dir-name>', `use ${chalk.cyan('Serve')} to run static file server`);
 
 program.arguments('<command>').action((cmd) => {
   program.outputHelp();
@@ -30,3 +54,14 @@ program.Command.prototype.missingArgument = function (...args) {
   process.exit(1);
 };
 program.parse(process.argv);
+
+function cleanArgs(cmd) {
+  let args = {};
+  cmd.options.forEach((i) => {
+    let key = i.long.replace(/^--/, '');
+    if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
+      args[key] = cmd[key];
+    }
+  });
+  return args;
+}

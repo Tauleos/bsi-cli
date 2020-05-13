@@ -1,8 +1,0 @@
-#!/usr/bin/env node
-
-const program = require('commander');
-const evaluateDate = require('../commands/date');
-program.parse(process.argv);
-const time = program.args[0];
-
-evaluateDate(time);

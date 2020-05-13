@@ -6,6 +6,7 @@
     "bsi": "bin/bsi"
   },
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "git push --follow-tags origin master && npm publish",
@@ -29,29 +30,31 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.0.0",
-    "commander": "^5.0.0",
+    "commander": "^5.1.0",
     "download-git-repo": "^3.0.2",
-    "ejs": "^3.0.1",
+    "ejs": "^3.1.2",
     "fs-extra": "^9.0.0",
     "globby": "^11.0.0",
     "inquirer": "^7.1.0",
-    "metalsmith": "^2.3.0",
     "ora": "^4.0.4",
     "portfinder": "^1.0.26",
     "serve-handler": "^6.1.2",
-    "snyk": "^1.320.2",
-    "uglify-js": "^3.7.4"
+    "uglify-js": "^3.9.2"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.3",
     "husky": "^4.2.5",
-    "lint-staged": "^10.1.7",
-    "prettier": "^2.0.4",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "standard-version": "^8.0.0"
+    "snyk": "^1.320.2",
+    "standard-version": "^8.0.0",
+    "typescript": "^3.9.2"
   },
   "husky": {
     "hooks": {

@@ -1,1 +1,1 @@
-module.exports = require('./commands/create');
+module.exports = require('./lib/create');

@@ -35,7 +35,7 @@ bsi create <template-name>
 
 ### Date
 
-transfrom timestamps to formated(yyyy-MM-dd HH:mm:ss) value, vice versa
+transform timestamps to formatted(yyyy-MM-dd HH:mm:ss) value, vice versa
 
 ```
 bsi date <value>
