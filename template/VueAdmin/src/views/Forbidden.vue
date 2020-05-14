@@ -13,21 +13,15 @@
             <li>
               邮件正文：
               <div class="mail-content">
-                <div>邮箱：yourname@xiaomi.com</div>
+                <div>邮箱：yourname@email.com</div>
                 <div>米ID：12345678</div>
                 <div>申请原因：因XX需要，需要申请{{ title }}XX权限</div>
               </div>
             </li>
             <li>
-              收件人：<a
-                v-for="(mail, i) in emails"
-                :key="i"
-                :href="`mailto:${mail}@xiaomi.com`"
-                class="mail-link"
-                >{{
-                  `${mail}@xiaomi.com${i === emails.length - 1 ? "" : ";"}`
-                }}</a
-              >
+              收件人：<a v-for="(mail, i) in emails" :key="i" :href="`mailto:${mail}@xiaomi.com`" class="mail-link">{{
+                `${mail}@xiaomi.com${i === emails.length - 1 ? '' : ';'}`
+              }}</a>
             </li>
           </ul>
         </div>
@@ -76,7 +70,7 @@
         vertical-align: 1px;
         margin-right: 5px;
 
-        content: "";
+        content: '';
         width: 8px;
         height: 8px;
         background: #9bbfe0;
@@ -98,9 +92,9 @@
 export default {
   data() {
     return {
-      title: "标签信息管理后台",
-      emails: ["yaolin1", "chenyiming1"]
-    }
+      title: '标签信息管理后台',
+      emails: ['yaolin1', 'chenyiming1']
+    };
   }
-}
+};
 </script>

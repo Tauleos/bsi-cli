@@ -58,8 +58,8 @@
 export default {
   computed: {
     hasHeader() {
-      return Boolean(this.$slots["header-left"] || this.$slots["header-right"])
+      return Boolean(this.$slots['header-left'] || this.$slots['header-right']);
     }
   }
-}
+};
 </script>

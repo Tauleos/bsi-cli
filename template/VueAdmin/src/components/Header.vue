@@ -6,56 +6,46 @@
       <span v-if="!userInfo" class="not-login" @click="login()">登录</span>
       <el-dropdown size="mini" @command="onClickMenu" v-else>
         <div class="logined">
-          <img
-            class="avatar"
-            :src="userInfo.avatar || require('@/assets/avatar.png')"
-            alt=""
-          />
+          <img class="avatar" :src="userInfo.avatar || require('@/assets/avatar.png')" alt="" />
           <span class="username">{{ userInfo.name }}</span>
           <i class="el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu slot="dropdown" class="dropdown">
-          <el-dropdown-item
-            v-for="(menu, i) in menus"
-            :key="i"
-            :command="menu.command"
-            >{{ menu.text }}</el-dropdown-item
-          >
+          <el-dropdown-item v-for="(menu, i) in menus" :key="i" :command="menu.command">{{
+            menu.text
+          }}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
   </header>
 </template>
 <script>
-import { mapState } from "vuex"
-import UpcAuthUtils from "utils/UpcAuthUtils"
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      title: "标签信息管理后台",
+      title: '标签信息管理后台',
       menus: [
         {
-          text: "退出",
-          command: "logout"
+          text: '退出',
+          command: 'logout'
         }
       ]
-    }
+    };
   },
   computed: {
-    ...mapState("user", {
+    ...mapState('user', {
       userInfo(state) {
-        return state.logined ? state : null
+        return state.logined ? state : null;
       }
     })
   },
   methods: {
-    login: UpcAuthUtils.login,
-    logout: UpcAuthUtils.logout,
     onClickMenu(command) {
-      this[command]()
+      this[command]();
     }
   }
-}
+};
 </script>
 <style scoped lang="less">
 .header {

@@ -1,7 +1,7 @@
-import Dashboard from "views/Dashboard.vue"
-import LabelManage from "views/label/LabelManage/LabelManage.vue"
-import LabelCreate from "views/label/LabelCreate/LabelCreate.vue"
-import PriorityManage from "views/priority/PriorityManage/PriorityManage.vue"
+import Dashboard from 'views/Dashboard.vue';
+import LabelManage from 'views/label/LabelManage/LabelManage.vue';
+import LabelCreate from 'views/label/LabelCreate/LabelCreate.vue';
+import PriorityManage from 'views/priority/PriorityManage/PriorityManage.vue';
 
 /**
 * 参数格式
@@ -18,57 +18,57 @@ import PriorityManage from "views/priority/PriorityManage/PriorityManage.vue"
  */
 export default [
   {
-    path: "/label",
+    path: '/label',
     component: Dashboard,
     meta: {
-      title: "标签信息管理",
+      title: '标签信息管理',
       breadcrumb: true,
       sidebar: true,
-      iconImage: "home"
+      iconImage: 'home'
     },
     children: [
       {
-        path: "",
+        path: '',
         component: LabelManage,
         meta: {
           breadcrumb: false
         }
       },
       {
-        path: "create",
+        path: 'create',
         component: LabelCreate,
         meta: {
-          title: "新建标签",
+          title: '新建标签',
           breadcrumb: true
         }
       }
     ]
   },
   {
-    path: "/priority",
+    path: '/priority',
     component: Dashboard,
     meta: {
-      title: "优先级管理",
+      title: '优先级管理',
       breadcrumb: true,
       sidebar: true,
-      iconImage: "priority"
+      iconImage: 'priority'
     },
     children: [
       {
-        path: "",
+        path: '',
         component: PriorityManage,
         meta: {
           breadcrumb: false
         }
       },
       {
-        path: "edit",
+        path: 'edit',
         component: PriorityManage,
         meta: {
-          title: "编辑优先级",
+          title: '编辑优先级',
           breadcrumb: true
         }
       }
     ]
   }
-]
+];

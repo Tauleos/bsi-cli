@@ -1,43 +1,43 @@
-import Vue from "vue"
-import Router from "vue-router"
-import store from "@/store"
-import Dashboard from "views/Dashboard.vue"
+import Vue from 'vue';
+import Router from 'vue-router';
+import store from '@/store';
+import Dashboard from 'views/Dashboard.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
-  mode: "hash",
+  mode: 'hash',
   routes: []
-})
+});
 
 const commonRoutes = [
-  { path: "/", redirect: "/label" },
+  { path: '/', redirect: '/label' },
   {
-    path: "/401",
+    path: '/401',
     component: Dashboard,
     children: [
       {
-        path: "",
-        component: () => import("views/Forbidden")
+        path: '',
+        component: () => import('views/Forbidden')
       }
     ]
   },
-  { path: "*", redirect: "/401" }
-]
+  { path: '*', redirect: '/401' }
+];
 
 router.beforeEach(async (to, from, next) => {
-  const { user: userState } = store.state
+  const { user: userState } = store.state;
 
   if (userState.loaded) {
-    next()
+    next();
   } else {
-    await store.dispatch("user/getLoginInfo")
-    await store.dispatch("user/getMenuInfo")
+    await store.dispatch('user/getLoginInfo');
+    await store.dispatch('user/getMenuInfo');
 
-    router.addRoutes([...userState.allowedRoutes, ...commonRoutes])
-    next({ ...to, replace: true })
-    next()
+    router.addRoutes([...userState.allowedRoutes, ...commonRoutes]);
+    next({ ...to, replace: true });
+    next();
   }
-})
+});
 
-export default router
+export default router;

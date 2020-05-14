@@ -19,7 +19,7 @@ export default {
     }
   },
   methods: {}
-}
+};
 </script>
 <style scoped lang="less">
 .title {

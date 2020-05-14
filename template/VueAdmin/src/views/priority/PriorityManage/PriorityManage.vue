@@ -8,12 +8,12 @@
   </Main>
 </template>
 <script>
-import Main from "components/Main"
-import Breadcrumb from "components/Breadcrumb"
+import Main from 'components/Main';
+import Breadcrumb from 'components/Breadcrumb';
 export default {
   components: {
     Main,
     Breadcrumb
   }
-}
+};
 </script>

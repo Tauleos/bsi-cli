@@ -1,41 +1,19 @@
 <template>
   <div class="nav">
-    <div
-      v-for="(item, index) in menus"
-      :key="index"
-      :class="['nav-item-level1', { active: item.active }]"
-    >
+    <div v-for="(item, index) in menus" :key="index" :class="['nav-item-level1', { active: item.active }]">
       <div class="level1-title" @click="clickLevel1(item)">
         <i v-if="item.iconFont" :class="'icon ' + item.iconFont"></i>
-        <img
-          v-else-if="item.iconPath"
-          class="icon"
-          :src="item.iconPath"
-          alt=""
-        />
+        <img v-else-if="item.iconPath" class="icon" :src="item.iconPath" alt="" />
         <span
           v-else-if="item.iconImage"
-          :class="[
-            `icon icon-image icon-image-${item.iconImage}`,
-            { active: item.active }
-          ]"
+          :class="[`icon icon-image icon-image-${item.iconImage}`, { active: item.active }]"
         />
         <span class="text">{{ item.title }}</span>
-        <i
-          v-if="item.children && item.children.length > 0"
-          class="dropdown el-icon-arrow-down"
-        ></i>
+        <i v-if="item.children && item.children.length > 0" class="dropdown el-icon-arrow-down"></i>
       </div>
       <div class="sub-menu" v-if="item.children && item.children.length > 0">
-        <div
-          class="nav-item-level2"
-          v-for="(level2Item, level2Index) in item.children"
-          :key="level2Index"
-        >
-          <div
-            :class="['level2-title', { active: level2Item.active }]"
-            @click="clickLevel2(level2Item)"
-          >
+        <div class="nav-item-level2" v-for="(level2Item, level2Index) in item.children" :key="level2Index">
+          <div :class="['level2-title', { active: level2Item.active }]" @click="clickLevel2(level2Item)">
             {{ level2Item.title }}
           </div>
         </div>
@@ -44,21 +22,21 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex"
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       menus: []
-    }
+    };
   },
   computed: {
-    ...mapState("user", ["allowedRoutes"])
+    ...mapState('user', ['allowedRoutes'])
   },
   watch: {
     allowedRoutes: {
       immediate: true,
       handler() {
-        this.menus = this.getSidebarMenus(this.allowedRoutes)
+        this.menus = this.getSidebarMenus(this.allowedRoutes);
       }
     }
   },
@@ -66,26 +44,26 @@ export default {
   methods: {
     clickLevel1(item) {
       if (item.children) {
-        item.active = !item.active
+        item.active = !item.active;
       } else {
-        this.inactiveAllRoutes()
-        this.openRoute(item)
+        this.inactiveAllRoutes();
+        this.openRoute(item);
       }
     },
     clickLevel2(item) {
-      this.inactiveAllRoutes()
-      this.openRoute(item)
+      this.inactiveAllRoutes();
+      this.openRoute(item);
     },
     openRoute(item) {
-      item.active = true
+      item.active = true;
       if (this.$route.path !== item.path) {
         if (item.newWin) {
           let routeUrl = this.$router.resolve({
             path: item.path
-          })
-          window.open(routeUrl.href, "_blank")
+          });
+          window.open(routeUrl.href, '_blank');
         } else {
-          this.$router.push(item.path)
+          this.$router.push(item.path);
         }
       }
     },
@@ -93,28 +71,28 @@ export default {
       this.menus.forEach(item => {
         if (item.children) {
           item.children.forEach(item => {
-            item.active = false
-          })
+            item.active = false;
+          });
         } else {
-          item.active = false
+          item.active = false;
         }
-      })
+      });
     },
     getSidebarMenus(routes) {
-      const sidebarMenus = []
+      const sidebarMenus = [];
       routes.forEach(route => {
-        const children = []
+        const children = [];
         if (route.children && route.children.length > 0) {
           route.children.forEach(subRoute => {
             if (subRoute.meta && subRoute.meta.sidebar) {
-              const path = this.joinPath(route.path, subRoute.path)
+              const path = this.joinPath(route.path, subRoute.path);
               children.push({
                 title: subRoute.meta.title,
                 path,
                 active: this.matchPath(path)
-              })
+              });
             }
-          })
+          });
         }
 
         const newRoute = {
@@ -125,27 +103,27 @@ export default {
           iconPath: route.meta.iconPath,
           iconImage: route.meta.iconImage,
           newWin: route.meta.newWin
-        }
+        };
 
         if (children && children.length > 0) {
           //二级菜单
-          newRoute.children = children
-          sidebarMenus.push(newRoute)
+          newRoute.children = children;
+          sidebarMenus.push(newRoute);
         } else if (route.meta.sidebar) {
           // 一级菜单
-          sidebarMenus.push(newRoute)
+          sidebarMenus.push(newRoute);
         }
-      })
-      return sidebarMenus
+      });
+      return sidebarMenus;
     },
     joinPath(...paths) {
-      return "/" + paths.map(path => path.replace(/^\/|\/$/g, "")).join("/")
+      return '/' + paths.map(path => path.replace(/^\/|\/$/g, '')).join('/');
     },
     matchPath(path) {
-      return this.$route.path === path
+      return this.$route.path === path;
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .nav {
