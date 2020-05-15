@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/Tauleos/bsi-cli/compare/v1.2.0...v1.2.1) (2020-05-15)
+
+### Features
+
+- add ejs to transpile template ([159b365](https://github.com/Tauleos/bsi-cli/commit/159b36560eab88f085e289e3f7f9d46f6f8e65b3))
+- add lib and utils dic ([7fe11f2](https://github.com/Tauleos/bsi-cli/commit/7fe11f217cc18a3157c4aa1dde25fb627f67ee23))
+- ajust template ([14980a2](https://github.com/Tauleos/bsi-cli/commit/14980a2172fa0199e28ddbdb81a4fd4089ae3fe7))
+- remove some subcommands,rewrite create commands ([b638e0b](https://github.com/Tauleos/bsi-cli/commit/b638e0b4d0f46320bb006cc67565404190475bf0))
+
+### Bug Fixes
+
+- package.json & .snyk to reduce vulnerabilities ([5573222](https://github.com/Tauleos/bsi-cli/commit/55732220accac55c6a78fc1d376ef8bee15d9939))
+- package.json & .snyk to reduce vulnerabilities ([e86fd71](https://github.com/Tauleos/bsi-cli/commit/e86fd711ec83bf4975a2133788f773d912ea3a1a))
+
 ## [1.2.0](https://github.com/Tauleos/bsi-cli/compare/v1.1.0...v1.2.0) (2020-05-12)
 
 ### Features
