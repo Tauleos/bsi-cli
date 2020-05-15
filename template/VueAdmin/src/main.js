@@ -7,10 +7,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './components/ElementUI';
 // import './assets/element-variables.scss'
 
-<? if (user) { ?>
-  console.log('ejs');
-<? } ?>
-
 Vue.config.productionTip = false;
 Vue.directive('pressenter', {
   bind: function(el, binding) {

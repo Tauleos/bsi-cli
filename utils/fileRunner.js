@@ -17,9 +17,14 @@ async function copyTemplate(src, dest, renderOptions) {
   if (renderOptions) {
     for (const file of files) {
       const source = path.join(src, file);
-      const str = await ejs.renderFile(source, renderOptions.data, { _with: false, async: true });
+      const str = await fs.readFile(source, { encoding: 'utf-8' });
       const destination = path.join(dest, file);
-      await fse.outputFile(destination, str, { encoding: 'utf8' });
+      if (/\.(png|gif|jpg|jpeg|ico)$/.test(file)) {
+        await await fse.outputFile(destination, str, { encoding: 'utf8' });
+        continue;
+      }
+      const html = await ejs.render(str, renderOptions.data, { async: true });
+      await fse.outputFile(destination, html, { encoding: 'utf8' });
     }
     return;
   }
