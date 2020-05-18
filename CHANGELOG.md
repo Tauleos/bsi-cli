@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/Tauleos/bsi-cli/compare/v1.2.1...v1.2.2) (2020-05-18)
+
+### Bug Fixes
+
+- inquirer 选 no 的 bug ([744ee5f](https://github.com/Tauleos/bsi-cli/commit/744ee5f5cba9617cdf6d90e0fa870153f6de518e))
+
 ### [1.2.1](https://github.com/Tauleos/bsi-cli/compare/v1.2.0...v1.2.1) (2020-05-15)
 
 ### Features

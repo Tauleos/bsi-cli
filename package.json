@@ -1,6 +1,6 @@
 {
   "name": "bsi-cli",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "日常工作中的生产力合集",
   "bin": {
     "bsi": "bin/bsi"
