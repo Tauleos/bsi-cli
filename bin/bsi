@@ -31,7 +31,14 @@ program
     const dir = path.join(process.cwd(), name || '.');
     require('../lib/serve')(dir, opts);
   });
-program.command('tree <dir-name>', `use ${chalk.cyan('Serve')} to run static file server`);
+program
+  .command('tree <file-name>')
+  .description(`generate data to Tree`)
+  .action((name, cmd) => {
+    const opts = cleanArgs(cmd);
+    const dir = path.join(process.cwd(), name || '.');
+    require('../lib/tree')(dir, opts);
+  });
 
 program.arguments('<command>').action((cmd) => {
   program.outputHelp();
