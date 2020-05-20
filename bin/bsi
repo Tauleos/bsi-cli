@@ -34,10 +34,13 @@ program
 program
   .command('tree <file-name>')
   .description(`generate data to Tree`)
+  .option('-l,--level <level>', 'Descend only level directories deep')
   .action((name, cmd) => {
+    console.log(cmd);
+
     const opts = cleanArgs(cmd);
-    const dir = path.join(process.cwd(), name || '.');
-    require('../lib/tree')(dir, opts);
+    const file = path.join(process.cwd(), name || '.');
+    require('../lib/tree')(file, opts);
   });
 
 program.arguments('<command>').action((cmd) => {
