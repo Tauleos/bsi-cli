@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/Tauleos/bsi-cli/compare/v1.2.2...v1.2.3) (2020-05-25)
+
+### Features
+
+- add tree command ([03b3489](https://github.com/Tauleos/bsi-cli/commit/03b3489aabd19f2e614df74ea50ca2b587e406c8))
+- add tree command ([4c5cd71](https://github.com/Tauleos/bsi-cli/commit/4c5cd7197635a87d2364e273e5c0ed2913e81393))
+
 ### [1.2.2](https://github.com/Tauleos/bsi-cli/compare/v1.2.1...v1.2.2) (2020-05-18)
 
 ### Bug Fixes
