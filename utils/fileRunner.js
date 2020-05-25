@@ -19,7 +19,7 @@ async function copyTemplate(src, dest, renderOptions) {
       const source = path.join(src, file);
       const str = await fs.readFile(source, { encoding: 'utf-8' });
       const destination = path.join(dest, file);
-      if (/\.(png|gif|jpg|jpeg|ico)$/.test(file)) {
+      if (/\.(png|gif|jpg|jpeg|ico|svg)$/.test(file)) {
         await await fse.outputFile(destination, str, { encoding: 'utf8' });
         continue;
       }
