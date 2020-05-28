@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0-patch.0](https://github.com/Tauleos/bsi-cli/compare/v1.2.3...v1.3.0-patch.0) (2020-05-28)
+
+### Features
+
+- add npmignore ([e39ba81](https://github.com/Tauleos/bsi-cli/commit/e39ba81868bdad63bfd3dd87ff27a1c516ee52ca))
+
+### Bug Fixes
+
+- create command some bugs ([45486ff](https://github.com/Tauleos/bsi-cli/commit/45486ff1cd6fe8518b4f9cbf28b7c20de253d307))
+- get inquirer answers error ([3ea074c](https://github.com/Tauleos/bsi-cli/commit/3ea074c4d615fc8c2400f668969dc1a89bf676f3))
+
 ### [1.2.3](https://github.com/Tauleos/bsi-cli/compare/v1.2.2...v1.2.3) (2020-05-25)
 
 ### Features
