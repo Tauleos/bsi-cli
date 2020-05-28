@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0-alpha.2](https://github.com/Tauleos/bsi-cli/compare/v1.3.0-alpha.0...v1.3.0-alpha.2) (2020-05-28)
+
+### Bug Fixes
+
+- remove log ([b420681](https://github.com/Tauleos/bsi-cli/commit/b4206817dba72f4278be22b57b4a8340bb65499c))
+
 ## [1.3.0-alpha.1](https://github.com/Tauleos/bsi-cli/compare/v1.3.0-alpha.0...v1.3.0-alpha.1) (2020-05-28)
 
 ### Bug Fixes
