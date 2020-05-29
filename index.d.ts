@@ -9,18 +9,18 @@ type Logger = {
   success(): void;
 };
 
-function RunCommand(cmd: string, args: string | string[], cwd?: string): Promise<void>;
+declare function RunCommand(cmd: string, args: string | string[], cwd?: string): Promise<void>;
 type ToolsCollection = {
   logger?: Logger;
-  runCommand?: RunCommand;
+  runCommand?: typeof RunCommand;
   logWithSpinner?: (symbol: string, msg?: string) => void;
   stopSpinner?: () => void;
 };
 interface PluginsApi {
   injectPrompt(Prompt: QuestionCollection): void;
-  onProjectCreate(cb: Promise): void;
-  onGitInit(cb: Promise): void;
+  onProjectCreate(cb: Promise<any>): void;
+  onGitInit(cb: Promise<any>): void;
 }
 declare function pluginsCallback(api: PluginsApi, tools: ToolsCollection): Promise<void>;
 export function run(templateName?: string): Promise<void>;
-export function registerPlugins(cb: pluginsCallback): void;
+export function registerPlugins(cb: typeof pluginsCallback): void;
