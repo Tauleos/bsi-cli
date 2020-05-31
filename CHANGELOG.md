@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0-alpha.3](https://github.com/Tauleos/bsi-cli/compare/v1.3.0-alpha.2...v1.3.0-alpha.3) (2020-06-04)
+
+### Features
+
+- 优化 create 内部逻辑 ([2d808c6](https://github.com/Tauleos/bsi-cli/commit/2d808c6ec6361001d3c102fea8d0cc56622e4716))
+
 ## [1.3.0-alpha.2](https://github.com/Tauleos/bsi-cli/compare/v1.3.0-alpha.0...v1.3.0-alpha.2) (2020-05-28)
 
 ### Bug Fixes
