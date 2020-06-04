@@ -5,7 +5,27 @@ const path = require('path');
 const cliName = process.env.CLI_NAME || 'bsi';
 program.version(`${cliName}-cli ${require('../package').version}`).usage('<command> [options]');
 
-program.command('create <app-name>', `create a new project by ${cliName}-cli`);
+program
+  .command('create <app-name> [template-name]')
+  .description(`create a new project by ${cliName}-cli`)
+  .action((appName, templateName, cmd) => {
+    const { run } = require('../lib/create');
+    run(appName, templateName);
+  })
+  .on('--help', function () {
+    console.log();
+    console.log('  Examples:');
+    console.log();
+    console.log(chalk.gray('    # create a new project with an official template'));
+    console.log(`    $ ${cliName} create my-project`);
+    console.log();
+    console.log(chalk.gray('    # create a new project straight from a git template'));
+    console.log(`    $ ${cliName} create my-project username/repo`);
+    console.log();
+    console.log(chalk.gray('    # create a new project straight from a local template'));
+    console.log(`    $ ${cliName} create my-project ~/fs/path/to-custom-template`);
+    console.log();
+  });
 
 program
   .command('compress <file>')
