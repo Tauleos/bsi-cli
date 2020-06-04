@@ -22,5 +22,5 @@ interface PluginsApi {
   onGitInit(cb: Promise<any>): void;
 }
 declare function pluginsCallback(api: PluginsApi, tools: ToolsCollection): Promise<void>;
-export function run(templateName?: string): Promise<void>;
+export function run(appName: string, templateName?: string): Promise<void>;
 export function registerPlugins(cb: typeof pluginsCallback): void;
