@@ -29,6 +29,6 @@ module.exports = async function download(template, targetDir, clone) {
     return targetDir;
   } catch (err) {
     stopSpinner();
-    logger.error(err);
+    logger.error(err.stack);
   }
 };
