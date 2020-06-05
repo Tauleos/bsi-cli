@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0-alpha.4](https://github.com/Tauleos/bsi-cli/compare/v1.2.3...v1.3.0-alpha.4) (2020-06-05)
+
+### Features
+
+- add customDownload plugins ([840e0c5](https://github.com/Tauleos/bsi-cli/commit/840e0c5540b4e5c8aab063d4f4165d21e648ab29))
+- add npmignore ([e39ba81](https://github.com/Tauleos/bsi-cli/commit/e39ba81868bdad63bfd3dd87ff27a1c516ee52ca))
+- 优化 create 内部逻辑 ([627051b](https://github.com/Tauleos/bsi-cli/commit/627051b3188998728d4cecbfb0647a73510972ab))
+
+### Bug Fixes
+
+- create command some bugs ([45486ff](https://github.com/Tauleos/bsi-cli/commit/45486ff1cd6fe8518b4f9cbf28b7c20de253d307))
+- get inquirer answers error ([6591686](https://github.com/Tauleos/bsi-cli/commit/659168602ee92fa6bc3b6262accd4f6d1def20a0))
+- remove log ([1f417f2](https://github.com/Tauleos/bsi-cli/commit/1f417f2fedfe71f5254bad501b817d01b1fdb304))
+- remove log ([54739e9](https://github.com/Tauleos/bsi-cli/commit/54739e9336476d40a2dfdec44cab4f4f33b6fcfd))
+
 ## [1.3.0-alpha.3](https://github.com/Tauleos/bsi-cli/compare/v1.3.0-alpha.2...v1.3.0-alpha.3) (2020-06-04)
 
 ### Features
