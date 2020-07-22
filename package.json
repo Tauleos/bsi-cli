@@ -13,9 +13,7 @@
     "release-major": "standard-version -r major",
     "release-minor": "standard-version -r minor",
     "release-patch": "standard-version -r patch",
-    "release-alpha": "standard-version -p alpha",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "release-alpha": "standard-version -p alpha"
   },
   "keywords": [
     "cli"
@@ -53,7 +51,6 @@
     "lint-staged": "^10.2.2",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "snyk": "^1.320.2",
     "standard-version": "^8.0.0",
     "typescript": "^3.9.2"
   },
