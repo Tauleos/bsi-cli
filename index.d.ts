@@ -1,6 +1,7 @@
 import { QuestionCollection } from 'inquirer';
 import fse from 'fs-extra';
 import { Command } from 'commander';
+import { SpawnOptionsWithoutStdio } from 'child_process';
 type Logger = {
   log(): void;
   warning(): void;

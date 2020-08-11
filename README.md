@@ -21,7 +21,7 @@ npm install -g bsi-cli
 
 ### Create
 
-create framework template for frontend,including
+#### create framework template for frontend,including
 
 - vue admin
 - vue component
@@ -32,6 +32,8 @@ create framework template for frontend,including
 ```
 bsi create <template-name>
 ```
+
+### [create a new Cli with Abstract Cli](./create.md)
 
 ### Date
 
