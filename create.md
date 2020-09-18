@@ -28,8 +28,8 @@ run(appName, templateName);
 
 #### Props
 
-- **appName** : the name which will be created by yourself CLI
-- **templateName**: the template which will be used by yourself CLI
+- **appName** : the name which will be created by your own CLI
+- **templateName**: the template which will be used by your own CLI
 
 ### registerPlugins
 
