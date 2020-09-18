@@ -21,7 +21,7 @@ npm install -g bsi-cli
 
 ### Create
 
-#### create framework template for frontend,including
+#### create framework template for frontend, including
 
 - vue admin
 - vue component
@@ -47,7 +47,7 @@ bsi date <value>
 
 ### serve
 
-serving a static file server in the assigned dictionary,default is current dictionary
+serving a static file server in the assigned dictionary, default is current dictionary
 
 ```
 bsi serve <dic-name>
