@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/Tauleos/bsi-cli/compare/v1.3.0-alpha.4...v1.3.0) (2020-11-10)
+
+### Features
+
+- add create.md ([7513540](https://github.com/Tauleos/bsi-cli/commit/751354021c926bd04588e81d6c0af9c142fabf04))
+
 ## [1.3.0-alpha.4](https://github.com/Tauleos/bsi-cli/compare/v1.2.3...v1.3.0-alpha.4) (2020-06-05)
 
 ### Features
